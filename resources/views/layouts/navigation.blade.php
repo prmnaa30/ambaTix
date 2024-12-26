@@ -12,7 +12,7 @@
     
     {{-- Dropdown Button --}}
     <button type="button" id="dropdownBtn" class="flex items-center justify-center bg-background-900 hover:bg-background-800 transition-colors duration-500 px-5 py-2 rounded-lg">
-        <img src="{{ asset('images/profile.svg') }}" alt="" class="pr-1 border-r-2 border-text-100">
+        <img src="{{ asset('icons/profile.svg') }}" alt="" class="pr-1 border-r-2 border-text-100">
         <p class="pl-1 font-semibold">Profile</p>
     </button>
 
@@ -23,18 +23,18 @@
             <p>Hi, </p>
             <p>Atmin</p>
             <button id="closeDropdown" class="absolute top-6 right-8">
-                <img src="{{ asset('images/cross.svg') }}" alt="">
+                <img src="{{ asset('icons/cross.svg') }}" alt="">
             </button>
         </div>
         <div class="flex flex-col gap-1 mt-1 pb-1 border-b-2 border-primary-900">
             <a href="{{ route('landing') }}"
                 class="hover:bg-primary-500 hover:rounded hover:transition-all duration-500 py-1 px-2 flex gap-2">
-                <img src="{{ asset('images/receipt.svg') }}" alt="">
+                <img src="{{ asset('icons/receipt.svg') }}" alt="">
                 <p>Transaksi</p>
             </a>
             <a href="{{ route('landing') }}"
                 class="hover:bg-primary-500 hover:rounded hover:transition-all duration-500 py-1 px-2 flex gap-2">
-                <img src="{{ asset('images/ticket.svg') }}" alt="">
+                <img src="{{ asset('icons/ticket.svg') }}" alt="">
                 <p>Ticket</p>
             </a>
         </div>
