@@ -26,7 +26,7 @@
         </nav>
 
         {{-- main content --}}
-        <main class="mx-24 mb-2 min-h-screen">
+        <main class="mx-24 mb-2 mt-4 min-h-screen flex flex-col gap-4">
             @yield('content')
         </main>
 

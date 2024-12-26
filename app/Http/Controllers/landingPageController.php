@@ -8,7 +8,7 @@ class landingPageController extends Controller
 {
     public function index()
     {
-        $layout = auth()->check() ? 'layouts.app' : 'layouts.app';
+        $layout = auth()->check() ? 'layouts.app' : 'layouts.guest';
         return view('landing', compact('layout'));
     }
 }
