@@ -11,17 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('events', function (Blueprint $table) {
+        Schema::create('tickets', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->text('description');
-            $table->date('date');
-            $table->string('organizer_name');
-            $table->string('category');
-            $table->string('image_url')->nullable();
+            $table->foreignId('event_id')->constrained()->onDelete('cascade');
+            $table->string('ticket_type');
+            $table->decimal('price', 10, 2);
+            $table->integer('quantity');
             $table->timestamps();
         });
-
     }
 
     /**
@@ -29,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('events');
+        Schema::dropIfExists('tickets');
     }
 };
