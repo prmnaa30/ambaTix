@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description');
+            $table->string('location');
             $table->date('date');
             $table->string('organizer_name');
             $table->string('category');

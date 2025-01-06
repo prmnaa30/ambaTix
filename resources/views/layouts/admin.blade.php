@@ -17,9 +17,10 @@
 </head>
 
 <body class="font-sans antialiased bg-background-950 text-text-100">
-    <header class="fixed h-full w-full top-0">
+    <header class="fixed w-full top-0">
         {{-- top bar --}}
-        <div class="flex items-center justify-between h-16 px-6 py-3 bg-primary-400 shadow-[4px_0_24px_0_rgba(0,0,0,0.25)]">
+        <div
+            class="flex items-center justify-between h-16 px-6 py-3 bg-primary-400 shadow-[4px_0_24px_0_rgba(0,0,0,0.25)]">
             <div class="flex gap-2 items-center">
                 <div class="bg-primary-400 w-48 object-center">
                     <x-application-logo width="145.4" height="57.4" class="bg-accent-300 px-4 py-2 rounded-2xl" />
@@ -29,15 +30,22 @@
                     <p>
                         Dashboard
                         <span>
-                            / {{
-                                (Route::is('admin') ? 'Dashboard' : 
-                                (Route::is('event') ? 'Transaksi' : 
-                                (Route::is('event.create') ? 'Tambah Event' :
-                                (Route::is('event.edit') ? 'Edit Event' :
-                                (Route::is('ticket') ? 'Ticket' :
-                                (Route::is('ticket.create') ? 'Tambah Ticket' :
-                                (Route::is('ticket.edit') ? 'Edit Ticket' : '')))))))
-                            }}
+                            /
+                            {{ Route::is('admin')
+                                ? 'Dashboard'
+                                : (Route::is('events.index')
+                                    ? 'Event'
+                                    : (Route::is('events.create')
+                                        ? 'Event / Tambah Event'
+                                        : (Route::is('events.edit')
+                                            ? 'Event / Edit Event'
+                                            : (Route::is('tickets')
+                                                ? 'Ticket'
+                                                : (Route::is('tickets.create')
+                                                    ? 'Ticket / Tambah Ticket'
+                                                    : (Route::is('tickets.edit')
+                                                        ? 'Ticket / Edit Ticket'
+                                                        : '')))))) }}
                         </span>
                     </p>
                 </div>
@@ -46,30 +54,34 @@
                 <p>Atmin</p>
             </div>
         </div>
-
-        {{-- sidebar --}}
-        <aside class="bg-primary-400 w-48 px-6 py-3 flex flex-col gap-2 h-full ">
-            <h1 class="font-bold text-lg">Main Menu</h1>
-            <nav class="flex flex-col">
-                <a href="{{ Route::is('admin') ? '#' : route('admin') }}" class="flex gap-2 px-2 py-1 hover:bg-accent-400 {{ Route::is('admin') ? 'bg-accent-400' : '' }} transition-colors duration-500 rounded-lg">
-                    <img src="{{ asset('icons/menu.svg') }}" alt="">
-                    <p class="text-base">Dashboard</p>
-                </a>
-                <a href="" class="flex gap-2 px-2 py-1 hover:bg-accent-400 transition-colors duration-500 rounded-lg mt-2">
-                    <img src="{{ asset('icons/calendar.svg') }}" alt="">
-                    <p class="text-base">Event</p>
-                </a>
-                <a href="" class="flex gap-2 px-2 py-1 hover:bg-accent-400 transition-colors duration-500 rounded-lg mt-2">
-                    <img src="{{ asset('icons/receipt2.svg') }}" alt="">
-                    <p class="text-base">Transaksi</p>
-                </a>
-                <a href="" class="flex gap-2 px-2 py-1 hover:bg-accent-400 transition-colors duration-500 rounded-lg mt-2">
-                    <img src="{{ asset('icons/user2.svg') }}" alt="">
-                    <p class="text-base">User</p>
-                </a>
-            </nav>
-        </aside>
     </header>
+
+    {{-- sidebar --}}
+    <aside class="bg-primary-400 w-48 px-6 py-3 fixed h-full ">
+        <h1 class="font-bold text-lg mb-2">Main Menu</h1>
+        <nav class="flex flex-col">
+            <a href="{{ Route::is('admin') ? '#' : route('admin') }}"
+                class="flex gap-2 px-2 py-1 hover:bg-accent-400 {{ Route::is('admin') ? 'bg-accent-400' : '' }} transition-colors duration-500 rounded-lg">
+                <img src="{{ asset('icons/menu.svg') }}" alt="">
+                <p class="text-base">Dashboard</p>
+            </a>
+            <a href="{{ Route::is('events.index') ? '#' : route('events.index') }}"
+                class="flex gap-2 px-2 py-1 hover:bg-accent-400 {{ Route::is('events.*') ? 'bg-accent-400' : '' }} transition-colors duration-500 rounded-lg mt-2">
+                <img src="{{ asset('icons/calendar.svg') }}" alt="">
+                <p class="text-base">Event</p>
+            </a>
+            <a href=""
+                class="flex gap-2 px-2 py-1 hover:bg-accent-400 transition-colors duration-500 rounded-lg mt-2">
+                <img src="{{ asset('icons/receipt2.svg') }}" alt="">
+                <p class="text-base">Transaksi</p>
+            </a>
+            <a href=""
+                class="flex gap-2 px-2 py-1 hover:bg-accent-400 transition-colors duration-500 rounded-lg mt-2">
+                <img src="{{ asset('icons/user2.svg') }}" alt="">
+                <p class="text-base">User</p>
+            </a>
+        </nav>
+    </aside>
 
     {{-- main content --}}
     <main class="ml-48 mt-16 p-6">
