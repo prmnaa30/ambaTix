@@ -25,29 +25,41 @@
                 <div class="bg-primary-400 w-48 object-center">
                     <x-application-logo width="145.4" height="57.4" class="bg-accent-300 px-4 py-2 rounded-2xl" />
                 </div>
-                <div class="flex items-center gap-2">
+                <div class="flex items-center gap-4">
                     <img src="{{ asset('icons/3line.svg') }}" alt="">
-                    <p>
-                        Dashboard
+                    <div class="flex font-semibold text-lg">
+                        <a href="{{ Route::is('admin') ? '#' : route('admin') }}" class="hover:underline">
+                            Dashboard
+                        </a>
+                        &nbsp;/&nbsp;
                         <span>
-                            /
-                            {{ Route::is('admin')
-                                ? 'Dashboard'
-                                : (Route::is('events.index')
-                                    ? 'Event'
-                                    : (Route::is('events.create')
-                                        ? 'Event / Tambah Event'
-                                        : (Route::is('events.edit')
-                                            ? 'Event / Edit Event'
-                                            : (Route::is('tickets')
-                                                ? 'Ticket'
-                                                : (Route::is('tickets.create')
-                                                    ? 'Ticket / Tambah Ticket'
-                                                    : (Route::is('tickets.edit')
-                                                        ? 'Ticket / Edit Ticket'
-                                                        : '')))))) }}
+                            @php
+                                $segments = Request::segments();
+                                $breadcrumbs = [];
+                                $link = '';
+                            @endphp
+                            @foreach ($segments as $segment)
+                                @php
+                                    $link .= '/' . $segment;
+                                    if (is_numeric($segment)) {
+                                        $title = '';
+                                    } else {
+                                        $title = ucfirst($segment);
+                                    }
+                                    $breadcrumbs[] = [
+                                        'title' => $title,
+                                        'link' => $link,
+                                    ];
+                                @endphp
+                                <a href="{{ $breadcrumbs[count($breadcrumbs) - 1]['link'] }}" class="hover:underline">{{ $breadcrumbs[count($breadcrumbs) - 1]['title'] }}</a>
+                                @if ($loop->last || empty($breadcrumbs[count($breadcrumbs) - 1]['title']))
+                                    
+                                @else
+                                    <span> / </span>
+                                @endif
+                            @endforeach
                         </span>
-                    </p>
+                    </div>
                 </div>
             </div>
             <div>
@@ -65,7 +77,7 @@
                 <img src="{{ asset('icons/menu.svg') }}" alt="">
                 <p class="text-base">Dashboard</p>
             </a>
-            <a href="{{ Route::is('events.index') ? '#' : route('events.index') }}"
+            <a href="{{ Route::is('events.') ? '#' : route('events.index') }}"
                 class="flex gap-2 px-2 py-1 hover:bg-accent-400 {{ Route::is('events.*') ? 'bg-accent-400' : '' }} transition-colors duration-500 rounded-lg mt-2">
                 <img src="{{ asset('icons/calendar.svg') }}" alt="">
                 <p class="text-base">Event</p>
