@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\EventCategory;
 use App\Services\SupabaseStorageService;
 use Illuminate\Http\Request;
 
@@ -29,7 +30,8 @@ class eventController extends Controller
      */
     public function create()
     {
-        return view('admin.events.create');
+        $categories = EventCategory::all();
+        return view('admin.events.create', compact('categories'));
     }
 
     /**
@@ -43,7 +45,7 @@ class eventController extends Controller
             'location' => 'string|max:255|required',
             'date' => 'date|required',
             'organizer_name' => 'string|max:100|required',
-            'category' => 'string|max:50|required',
+            'category' => 'required',
             'imageInput' => 'file|mimetypes:image/webp,image/png|required',
         ]);
 
@@ -106,7 +108,7 @@ class eventController extends Controller
             'location' => 'string|max:255|required',
             'date' => 'date|required',
             'organizer_name' => 'string|max:100|required',
-            'category' => 'string|max:50|required',
+            'category' => 'required',
             'imageInput' => 'file|mimetypes:image/webp,image/png',
         ]);
 

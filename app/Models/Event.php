@@ -22,4 +22,9 @@ class Event extends Model
     {
         return $this->hasMany(Ticket::class);
     }
+
+    public function category()
+    {
+        return $this->belongsTo(EventCategory::class, 'event_categories_id');
+    }
 }
