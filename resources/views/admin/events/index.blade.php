@@ -25,11 +25,11 @@
                             </p>
                             <p class="flex gap-2">
                                 <img src="{{ asset('icons/hashtag.svg') }}" alt="">
-                                {{ $event->category }}
+                                {{ $event->category->name }}
                             </p>
                         </div>
-                        <div class="flex items-center gap-2 mt-2">
-                            <a href="" class="bg-primary-400 rounded-lg px-2 py-1 text-sm text-text-950">Tickets</a>
+                        <div class="flex items-center gap-2">
+                            <a href="{{ route('events.tickets.index', ['eventId' => $event->id]) }}" class="bg-primary-400 rounded-lg px-2 py-1 text-sm text-text-950">Tickets</a>
                             <a href="{{ route('events.edit', $event->id) }}" class="bg-orange-500 rounded-lg p-1">
                                 <img src="{{ asset('icons/Edit.svg') }}" alt="">
                             </a>

@@ -21,7 +21,7 @@ class eventController extends Controller
      */
     public function index()
     {
-        $events = Event::all();
+        $events = Event::with('category')->get();
         return view('admin.events.index', compact('events'));
     }
 
@@ -45,7 +45,7 @@ class eventController extends Controller
             'location' => 'string|max:255|required',
             'date' => 'date|required',
             'organizer_name' => 'string|max:100|required',
-            'category' => 'required',
+            'event_categories_id' => 'numeric|required',
             'imageInput' => 'file|mimetypes:image/webp,image/png|required',
         ]);
 
@@ -61,13 +61,14 @@ class eventController extends Controller
 
         $imageUrl = $this->supabaseStorageService->getPublicUrl($fileName);
 
+        $event_category_id = $request->event_categories_id;
         $event = Event::create([
             'name' => $request->name,
             'description' => $request->description,
             'location' => $request->location,
             'date' => $request->date,
             'organizer_name' => $request->organizer_name,
-            'category' => $request->category,
+            'event_categories_id' => $event_category_id,
             'image_url' => $imageUrl
         ]);
 
@@ -94,7 +95,8 @@ class eventController extends Controller
     public function edit(string $id)
     {
         $event = Event::findOrFail($id);
-        return view('admin.events.edit', compact('event'));
+        $categories = EventCategory::all();
+        return view('admin.events.edit', compact('event', 'categories'));
     }
 
     /**
@@ -108,7 +110,7 @@ class eventController extends Controller
             'location' => 'string|max:255|required',
             'date' => 'date|required',
             'organizer_name' => 'string|max:100|required',
-            'category' => 'required',
+            'event_categories_id' => 'numeric|required',
             'imageInput' => 'file|mimetypes:image/webp,image/png',
         ]);
 
@@ -122,7 +124,7 @@ class eventController extends Controller
             'location' => $request->location,
             'date' => $request->date,
             'organizer_name' => $request->organizer_name,
-            'category' => $request->category,
+            'event_categories_id' => $request->event_categories_id,
         ]);
 
         if ($request->hasFile('imageInput')) {

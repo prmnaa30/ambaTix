@@ -14,7 +14,7 @@ class Event extends Model
         'location',
         'date',
         'organizer_name',
-        'category',
+        'event_categories_id',
         'image_url',
     ];
 
