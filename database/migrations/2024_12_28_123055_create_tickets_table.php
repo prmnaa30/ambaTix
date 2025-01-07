@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('ticket_type');
             $table->decimal('price', 10, 2);
             $table->integer('quantity');
+            $table->integer('sold_quantity')->default(0);
             $table->timestamps();
         });
     }
