@@ -48,8 +48,6 @@ Route::get('/logout', [loginController::class, 'logout'])->name('logout');
 Route::get('/content', [contentLandingController::class, 'index'])->name('contentLanding');
 
 Route::get('/content/content-payment', [contentPaymentController::class, 'index'])->name('contentPayment');
-<<<<<<< HEAD
-=======
 
 Route::get('/content/content-payment/payment-detail', [contentPaymentController::class, 'paymentDetail'])->name('paymentDetail');
 
@@ -66,4 +64,3 @@ Route::prefix('/events/{eventId}')->name('events.tickets.')->group(function () {
   Route::put('/tickets/{ticketId}', [ticketController::class, 'update'])->name('update');
   Route::delete('/tickets/{ticketId}', [ticketController::class, 'destroy'])->name('destroy');
 });
->>>>>>> 658dfb1cf91ec37d0ac460342dbc8bcdbd836499
