@@ -11,4 +11,10 @@ class contentPaymentController extends Controller
         $layout = auth()->check() ? 'layouts.app' : 'layouts.guest';
         return view('contentPayment', compact('layout'));
     }
+
+    public function paymentDetail()
+    {
+        $layout = auth()->check() ? 'layouts.app' : 'layouts.guest';
+        return view('paymentDetail', compact('layout'));
+    }
 }

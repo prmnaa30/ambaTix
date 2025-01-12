@@ -48,3 +48,22 @@ Route::get('/logout', [loginController::class, 'logout'])->name('logout');
 Route::get('/content', [contentLandingController::class, 'index'])->name('contentLanding');
 
 Route::get('/content/content-payment', [contentPaymentController::class, 'index'])->name('contentPayment');
+<<<<<<< HEAD
+=======
+
+Route::get('/content/content-payment/payment-detail', [contentPaymentController::class, 'paymentDetail'])->name('paymentDetail');
+
+/** Admin */
+Route::get('/admin', [adminPageController::class, 'index'])->name('admin');
+Route::resource('events', eventController::class);
+
+// Tickets
+Route::prefix('/events/{eventId}')->name('events.tickets.')->group(function () {
+  Route::get('/tickets', [ticketController::class, 'index'])->name('index');
+  Route::get('/tickets/create', [ticketController::class, 'create'])->name('create');
+  Route::post('/tickets', [ticketController::class, 'store'])->name('store');
+  Route::get('/tickets/{ticketId}/edit', [ticketController::class, 'edit'])->name('edit');
+  Route::put('/tickets/{ticketId}', [ticketController::class, 'update'])->name('update');
+  Route::delete('/tickets/{ticketId}', [ticketController::class, 'destroy'])->name('destroy');
+});
+>>>>>>> 658dfb1cf91ec37d0ac460342dbc8bcdbd836499
