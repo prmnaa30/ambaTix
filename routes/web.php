@@ -13,5 +13,7 @@ Route::get('/content', [contentLandingController::class, 'index'])->name('conten
 
 Route::get('/content/content-payment', [contentPaymentController::class, 'index'])->name('contentPayment');
 
+Route::get('/content/content-payment/payment-detail', [contentPaymentController::class, 'paymentDetail'])->name('paymentDetail');
+
 /** Admin */
 Route::get('/admin', [adminPageController::class, 'index'])->name('admin');
