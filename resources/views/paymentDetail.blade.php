@@ -1,7 +1,7 @@
 @extends($layout)
 
 @section('content')
-    <div class="flex justify-center gap-4 ml-14">
+    <div class="flex justify-center gap-4">
         
         <div class="flex">
             <img src="{{ asset('icons/one-400.svg') }}" alt="one" class="bg-primar-400">
@@ -13,7 +13,7 @@
         <div class="flex">
 
             <img src="{{ asset('icons/two.svg') }}" alt="two">
-            <p class="mt-1 font-bold text-lg">Metode Pembayaran</p>
+            <p class="mt-1 font-bold text-lg">Pembayaran</p>
         </div>
 
     </div>
@@ -113,13 +113,37 @@
                         <span class="ml-4">0 Tiket Dipesan</span>
                     </div>
 
+                    <!-- <div id="payment" class="mt-4 border-b-2 border-primary-400 pb-4">
+                        <button href="" class="">
+                            <img src="{{ asset('icons/bank-bni.svg') }}" alt="Logo BNI">
+                        </button>
+                    </div> -->
+
+                    <div id="payment" class="mt-4 border-b-2 border-primary-400 pb-4">
+                        <p class="font-bold text-lg mb-2">Pilih Metode Pembayaran</p>
+                        
+                        <!-- Tombol untuk memilih BNI -->
+                        <button class="flex items-center p-2 border-2 border-primary-400 rounded-lg hover:bg-primary-400 transition-colors duration-300">
+                            <img src="{{ asset('icons/bank-bni.svg') }}" alt="Logo BNI" class="w-12 h-12">
+                            <span class="ml-2 pr-8">Bank BNI</span>
+                        </button>
+
+                        <!-- Opsi lain untuk metode pembayaran -->
+                        <button class="flex items-center p-2 border-2 border-primary-400 rounded-lg mt-2 hover:bg-primary-400 transition-colors duration-300">
+                            <img src="{{ asset('icons/logo-mandiri.svg') }}" alt="Logo Mandiri" class="w-12 h-12">
+                            <span class="ml-2">Bank Mandiri</span>
+                        </button>
+
+                        <!-- Tambahkan opsi lain sesuai kebutuhan -->
+                    </div>
+
                     <div id="eventPrice" class="flex flex-col items-center bg-primary-600 rounded-lg w-auto mt-4">
                         <div class="flex justify-between items-center w-full text-lg font-bold mb-4 px-4">
                             <span>Total</span>
                             <span class="text-black">Rp 0</span>
                         </div>
                         <button class="w-full bg-primary-400 text-white text-xl font-extrabold py-2 rounded-full hover:bg-primary-500 transition-colors duration-300">
-                            Pesan
+                            Bayar
                         </button>
                     </div>
 

@@ -24,16 +24,16 @@
         </div>
 
         <div class="grid grid-cols-4 gap-4 justify-items-center" id="all-events">
-            <a href="">
+            <a href="{{ route('contentLanding') }}">
                 <img src="{{ asset('images/diesteria-vol2.jpg') }}" alt="Event" style="width: 294px; height: 350px; object-fit: cover;" class="rounded-2xl transition-all duration-500 hover:scale-95 hover:opacity-80">
             </a>
-            <a href="">
+            <a href="{{ route('contentLanding') }}">
                 <img src="{{ asset('images/diesteria-vol2.jpg') }}" alt="Event" style="width: 294px; height: 350px; object-fit: cover;" class="rounded-2xl transition-all duration-500 hover:scale-95 hover:opacity-80">
             </a>
-            <a href="">
+            <a href="{{ route('contentLanding') }}">
                 <img src="{{ asset('images/diesteria-vol2.jpg') }}" alt="Event" style="width: 294px; height: 350px; object-fit: cover;" class="rounded-2xl transition-all duration-500 hover:scale-95 hover:opacity-80">
             </a>
-            <a href="">
+            <a href="{{ route('contentLanding') }}">
                 <img src="{{ asset('images/diesteria-vol2.jpg') }}" alt="Event" style="width: 294px; height: 350px; object-fit: cover;" class="rounded-2xl transition-all duration-500 hover:scale-95 hover:opacity-80">
             </a>
             <a href="">

@@ -33,9 +33,11 @@
                     <span>Harga</span>
                     <span class="text-black">Rp 165.000</span>
                 </div>
-                <button class="w-full bg-primary-400 text-white text-xl font-extrabold py-2 rounded-full hover:bg-primary-500 transition-colors duration-300">
-                    Beli Sekarang!
-                </button>
+                <a href="{{ route('contentPayment') }}" class="w-full bg-primary-400 text-white text-xl font-extrabold py-2 rounded-full hover:bg-primary-500 transition-colors duration-300">
+                    <button class="w-full">
+                        Beli Sekarang!
+                    </button>
+                </a>
             </div>
 
         </div>
