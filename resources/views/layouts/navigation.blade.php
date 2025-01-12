@@ -18,10 +18,10 @@
 
     {{-- Dropdown Bg + Content --}}
     <div id="dropdownContentBg" class="fixed hidden inset-0 bg-background-50/20 transition-colors duration-500"></div>
-    <div id="dropdownContent" class="bg-primary-400 text-white absolute hidden top-28 right-24 rounded-2xl w-56 px-8 py-6">
+    <div id="dropdownContent" class="bg-primary-400 text-white absolute hidden top-28 right-24 rounded-2xl w-56 px-8 py-6 z-50">
         <div class="border-b-2 pb-1 border-primary-900 w-full">
             <p>Hi, </p>
-            <p>Atmin</p>
+            <p>{{ Auth::user()->nama_panggilan }}</p>
             <button id="closeDropdown" class="absolute top-6 right-8">
                 <img src="{{ asset('icons/cross.svg') }}" alt="">
             </button>
@@ -38,7 +38,7 @@
                 <p>Ticket</p>
             </a>
         </div>
-        <a href="{{ route('landing') }}"
+        <a href="{{ route('logout') }}"
             class="hover:bg-primary-500 hover:rounded hover:transition-all duration-500 py-1 px-2 block mt-1">
             Logout
         </a>

@@ -2,6 +2,7 @@
     <label for="{{ $id }}" class="w-fit">{{ $label }}</label>
     
     @if ($inputTag == 'input')
+        {{-- element input --}}
         <input
             type="{{ $type }}"
             name="{{ $name }}"
@@ -12,6 +13,41 @@
             {{ $attributes ?? null}}
             required
         />
+
+        {{-- khusus field password --}}
+        @if ($id == 'password')
+            <small id="passwordHelp" class="mt-1 text-xs text-text-500" style="display: none">
+                Password minimal 8 karakter!
+            </small>
+            <script>
+                document.getElementById("password").addEventListener("input", () => {
+                    let password = document.getElementById("password").value;
+                    const passwordHelp = document.getElementById("passwordHelp");
+                    if (password.length < 8) {
+                        passwordHelp.style.display = "block";
+                    } else {
+                        passwordHelp.style.display = "none";
+                    }
+                });
+            </script>
+        @elseif ($id == 'password_confirmation')
+            <small id="passwordInvalid" class="mt-1 text-xs text-text-500" style="display: none">
+                Password tidak sesuai!
+            </small>
+            <script>
+                document.getElementById("password_confirmation").addEventListener("input", () => {
+                    let password = document.getElementById("password").value;
+                    let passwordConfirmation = document.getElementById("password_confirmation").value;
+                    const passwordInvalid = document.getElementById("passwordInvalid");
+
+                    if (passwordConfirmation !== password && passwordConfirmation.length > 0) {
+                        passwordInvalid.style.display = "block";
+                    } else {
+                        passwordInvalid.style.display = "none";
+                    }
+                });
+            </script>
+        @endif
     @elseif ($inputTag == 'textarea')
         <textarea
             name="{{ $name }}"
