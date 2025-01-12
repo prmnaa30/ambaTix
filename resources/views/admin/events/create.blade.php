@@ -48,14 +48,15 @@
                         placeholder="Masukkan Tanggal Event" 
                         label="Tanggal Event" 
                     />
-                    <x-form-group 
-                        inputTag="input" 
-                        id="category" 
-                        name="category" 
-                        type="text" 
-                        placeholder="Masukkan Kategori Event" 
-                        label="Kategori Event" 
-                    />
+                    <div class="flex flex-col gap-1 text-text-100">
+                        <label for="event_categories_id">Kategori Event</label>
+                        <select id="event_categories_id" name="event_categories_id" class="w-full border-2 border-primary-500 focus:outline-none focus:border-primary-400 transition-colors duration-500 ease rounded-lg p-1 bg-transparent placeholder:text-text-500 text-text-300">
+                            <option value="" class="text-text-500/70 bg-primary-600" disabled selected>Pilih Kategori Event</option>
+                            @foreach ($categories as $category)
+                                <option class="bg-primary-600" value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                     <x-form-group 
                         inputTag="input" 
                         id="organizer_name"

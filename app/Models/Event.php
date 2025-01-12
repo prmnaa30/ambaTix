@@ -14,12 +14,17 @@ class Event extends Model
         'location',
         'date',
         'organizer_name',
-        'category',
+        'event_categories_id',
         'image_url',
     ];
 
     public function tickets()
     {
         return $this->hasMany(Ticket::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(EventCategory::class, 'event_categories_id');
     }
 }

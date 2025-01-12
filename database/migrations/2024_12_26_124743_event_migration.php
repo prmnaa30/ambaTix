@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('location');
             $table->date('date');
             $table->string('organizer_name');
-            $table->string('category');
+            $table->foreignId('event_categories_id')->constrained()->onDelete('cascade');
             $table->string('image_url')->nullable();
             $table->timestamps();
         });

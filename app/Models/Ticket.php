@@ -14,6 +14,7 @@ class Ticket extends Model
         'ticket_type',
         'price',
         'quantity',
+        'sold_quantity'
     ];
 
     public function event()
