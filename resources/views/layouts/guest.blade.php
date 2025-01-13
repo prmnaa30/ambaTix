@@ -16,7 +16,7 @@
     </head>
     <body class="font-sans antialiased bg-background-950">
         {{-- header --}}
-        <nav class="bg-primary-400 rounded-2xl mx-24 mt-2 px-10 py-4 flex gap-16 items-center">
+        <nav class="bg-primary-400 rounded-2xl mx-24 mt-2 px-10 py-4 flex gap-8 items-center">
             <x-application-logo width="145.4" height="57.4" />
             <div class="bg-background-950 w-100 rounded-2xl flex items-center justify-center px-4 py-1 w-full">
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#5A6006" viewBox="0 0 256 256"><path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path></svg>

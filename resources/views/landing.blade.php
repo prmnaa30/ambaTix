@@ -19,35 +19,20 @@
     <div>
         <div class="mb-4">
             <p class="text-2xl font-bold">
-                Event Terbaru <span class="text-blue-600 ml-6 text-base ">Tampilkan Semua</span>
+                Event Terbaru <a href="{{ route('search') }}" class="text-blue-600 ml-6 text-base ">Tampilkan Semua</a>
             </p>
         </div>
 
         <div class="grid grid-cols-4 gap-4 justify-items-center" id="all-events">
-            <a href="{{ route('contentLanding') }}">
-                <img src="{{ asset('images/diesteria-vol2.jpg') }}" alt="Event" style="width: 294px; height: 350px; object-fit: cover;" class="rounded-2xl transition-all duration-500 hover:scale-95 hover:opacity-80">
-            </a>
-            <a href="{{ route('contentLanding') }}">
-                <img src="{{ asset('images/diesteria-vol2.jpg') }}" alt="Event" style="width: 294px; height: 350px; object-fit: cover;" class="rounded-2xl transition-all duration-500 hover:scale-95 hover:opacity-80">
-            </a>
-            <a href="{{ route('contentLanding') }}">
-                <img src="{{ asset('images/diesteria-vol2.jpg') }}" alt="Event" style="width: 294px; height: 350px; object-fit: cover;" class="rounded-2xl transition-all duration-500 hover:scale-95 hover:opacity-80">
-            </a>
-            <a href="{{ route('contentLanding') }}">
-                <img src="{{ asset('images/diesteria-vol2.jpg') }}" alt="Event" style="width: 294px; height: 350px; object-fit: cover;" class="rounded-2xl transition-all duration-500 hover:scale-95 hover:opacity-80">
-            </a>
-            <a href="">
-                <img src="{{ asset('images/semnas-bem-instiki.png') }}" alt="Event" style="width: 294px; height: 350px; object-fit: cover;" class="rounded-2xl transition-all duration-500 hover:scale-95 hover:opacity-80">
-            </a>
-            <a href="">
-                <img src="{{ asset('images/semnas-bem-instiki.png') }}" alt="Event" style="width: 294px; height: 350px; object-fit: cover;" class="rounded-2xl transition-all duration-500 hover:scale-95 hover:opacity-80">
-            </a>
-            <a href="">
-                <img src="{{ asset('images/semnas-bem-instiki.png') }}" alt="Event" style="width: 294px; height: 350px; object-fit: cover;" class="rounded-2xl transition-all duration-500 hover:scale-95 hover:opacity-80">
-            </a>
-            <a href="">
-                <img src="{{ asset('images/semnas-bem-instiki.png') }}" alt="Event" style="width: 294px; height: 350px; object-fit: cover;" class="rounded-2xl transition-all duration-500 hover:scale-95 hover:opacity-80">
-            </a>
+            @forelse ($events as $event)
+                <a href="{{ route('detail-event', $event->id) }}">
+                    <img src="{{ $event->image_url }}" alt="Event" style="width: 294px; height: 350px; object-fit: cover;" class="rounded-2xl transition-all duration-500 hover:scale-95 hover:opacity-80">
+                </a>
+            @empty
+                <div class="col-span-4">
+                    <p class="flex justify-center items-center h-60">Tidak ada event...</p>
+                </div>
+            @endforelse
         </div>
     </div>
 
