@@ -87,8 +87,10 @@ class eventController extends Controller
     public function show(string $id)
     {
         $event = Event::find($id);
+        $layout = auth()->check() ? 'layouts.app' : 'layouts.guest';
+        $categories = EventCategory::all();
 
-        return view('events.show', compact('event'));
+        return view('contentLanding', compact('event', 'layout', 'categories'));
     }
 
     /**
