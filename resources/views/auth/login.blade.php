@@ -23,7 +23,8 @@
                         name="email" 
                         type="email" 
                         placeholder="Masukkan Email" 
-                        label="Email" 
+                        label="Email"
+                        value="{{ old('email') }}"
                     />
                     <x-form-group 
                         inputTag="input" 
@@ -33,6 +34,10 @@
                         placeholder="Masukkan Password" 
                         label="Password" 
                     />
+                    <div class="flex items-center">
+                        <input type="checkbox" name="remember" id="remember" class="w-4 h-4 accent-accent-300">
+                        <label for="remember" class="ml-2 text-sm text-text-300">Ingat Saya</label>
+                    </div>
                     <button type="submit" class="bg-primary-400 rounded-lg px-2 py-1 mt-2 text-text-950 hover:bg-primary-300 transition-colors duration-500">Masuk</button>
                 </form>
                 <p class="text-center text-sm">atau</p>
