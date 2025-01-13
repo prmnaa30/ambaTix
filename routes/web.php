@@ -3,14 +3,20 @@
 use App\Http\Controllers\adminPageController;
 use App\Http\Controllers\auth\loginController;
 use App\Http\Controllers\auth\registerController;
+use App\Http\Controllers\eventCategoriesController;
 use App\Http\Controllers\eventController;
 use App\Http\Controllers\landingPageController;
 use App\Http\Controllers\contentLandingController;
 use App\Http\Controllers\contentPaymentController;
+use App\Http\Controllers\searchController;
 use App\Http\Controllers\ticketController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [landingPageController::class, 'index'])->name('landing');
+
+Route::get('/search', [searchController::class, 'searchEvent'])->name('search');
+
+Route::get('/detail-event/{id}', [eventController::class, 'show'])->name('detail-event'); ;
 
 //** Guest */
 Route::middleware('guest')->group(function () {
@@ -28,7 +34,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
   Route::get('/admin', [adminPageController::class, 'index'])->name('admin');
 
   // Events
-  Route::resource('events', eventController::class);
+  Route::resource('/events', eventController::class);
 
   // Tickets
   Route::prefix('/events/{eventId}')->name('events.tickets.')->group(function () {
@@ -40,6 +46,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::delete('/tickets/{ticketId}', [ticketController::class, 'destroy'])->name('destroy');
   });
 
+  // Categories
+  Route::resource('kategori', eventCategoriesController::class);
+
   // Transaksi
   Route::get('/transaksi', [adminPageController::class, 'transaksi'])->name('transaksi');
 
@@ -48,10 +57,3 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 });
 
 Route::get('/logout', [loginController::class, 'logout'])->name('logout');
-
-Route::get('/content', [contentLandingController::class, 'index'])->name('contentLanding');
-
-Route::get('/content/content-payment', [contentPaymentController::class, 'index'])->name('contentPayment');
-
-Route::get('/content/content-payment/payment-detail', [contentPaymentController::class, 'paymentDetail'])->name('paymentDetail');
-
