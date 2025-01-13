@@ -19,10 +19,10 @@
             <div class="flex pl-4 mx-4 border-2 border-primary-400 rounded-lg justify-between my-2">
                 <div class="m-3">
                     <p>Presale 1</p>
-                    <p class="font-bold">Rp 135.000</p>
+                    <p class="font-bold" >Rp 135.000</p>
                 </div>
                 <div class="border-2 border-primary-400 rounded-md p-3 m-3 bg-primary-500 hover:bg-primary-800 transition-all duration-500">
-                    <button>Tambah</button>
+                    <button class="tambah-tiket" data-price="135000">Tambah</button>
                 </div>
             </div>
 
@@ -32,11 +32,13 @@
                     <p class="font-bold">Rp 160.000</p>
                 </div>
                 <div class="border-2 border-primary-400 rounded-md p-3 m-3 bg-primary-500 hover:bg-primary-800 transition-all duration-500">
-                    <button>Tambah</button>
+                    <button class="tambah-tiket" data-price="160000">Tambah</button>
                 </div>
             </div>
 
         </div>
+
+
         <div id="eventPayment" class="pl-4 rounded-xl">
 
             <div id="eventDetail" class="flex flex-col items-center bg-primary-600 rounded-lg p-5 w-auto">
@@ -66,7 +68,7 @@
 
                     </div>
 
-                    <div class="mt-4 border-b-2 border-primary-400 pb-4">
+                    <div id="totalTiket" class="mt-4 border-b-2 border-primary-400 pb-4">
                         <span class="ml-4">0 Tiket Dipesan</span>
                     </div>
 
@@ -87,5 +89,63 @@
 
         </div>
     </div>
+
+    <script>
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     const jumlahTiketElement = document.querySelector('#eventDetail .mt-4.border-b-2.pb-4 span');
+        //     const totalHargaElement = document.querySelector('#eventPrice .text-black');
+
+        //     let jumlahTiket = 0;
+        //     let totalHarga = 0;
+
+        //     // Event delegation untuk tombol "Tambah"
+        //     document.getElementById('eventTicket').addEventListener('click', function(event) {
+        //         if (event.target.classList.contains('tambah-tiket')) {
+        //             // Ambil harga tiket dari atribut data-price
+        //             const hargaTiket = parseInt(event.target.getAttribute('data-price'));
+
+        //             // Tambah jumlah tiket dan hitung total harga
+        //             jumlahTiket += 1;
+        //             totalHarga += hargaTiket;
+
+        //             // Update tampilan
+        //             jumlahTiketElement.textContent = `${jumlahTiket} Tiket Dipesan`;
+        //             totalHargaElement.textContent = `Rp ${totalHarga.toLocaleString()}`;
+        //         }
+        //     });
+        // });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Ambil elemen-elemen yang diperlukan
+            const jumlahTiketElement = document.querySelector('#totalTiket span');
+            const totalHargaElement = document.querySelector('#eventPrice .text-black');
+
+            // Inisialisasi variabel
+            let jumlahTiket = 0;
+            let totalHarga = 0;
+
+            // Fungsi untuk menambah tiket
+            function tambahTiket(harga) {
+                jumlahTiket += 1; // Tambah jumlah tiket
+                totalHarga += harga; // Tambah total harga
+
+                // Update tampilan
+                jumlahTiketElement.textContent = `${jumlahTiket} Tiket Dipesan`;
+                totalHargaElement.textContent = `Rp ${totalHarga.toLocaleString()}`;
+            }
+
+            // Event delegation untuk tombol "Tambah"
+            document.getElementById('eventTicket').addEventListener('click', function(event) {
+                if (event.target.classList.contains('tambah-tiket')) {
+                    // Ambil harga tiket dari atribut data-price
+                    const hargaTiket = parseInt(event.target.getAttribute('data-price'));
+
+                    // Panggil fungsi tambahTiket
+                    tambahTiket(hargaTiket);
+                }
+            });
+        });
+
+    </script>
 
 @endsection

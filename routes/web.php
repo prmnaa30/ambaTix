@@ -21,7 +21,11 @@ Route::middleware('guest')->group(function () {
 });
 
 //** Authorized */
-
+Route::middleware(['auth'])->group(function (){
+  Route::get('/content/content-payment', [contentPaymentController::class, 'index'])->name('contentPayment');
+  Route::get('/content/content-payment/payment-detail', [contentPaymentController::class, 'paymentDetail'])->name('paymentDetail');
+  Route::get('/content/content-payment/payment-method', [contentPaymentController::class, 'paymentMethod'])->name('paymentMethod');
+});
 
 /** Admin */
 Route::middleware(['auth', 'role:admin'])->group(function () {
@@ -51,7 +55,5 @@ Route::get('/logout', [loginController::class, 'logout'])->name('logout');
 
 Route::get('/content', [contentLandingController::class, 'index'])->name('contentLanding');
 
-Route::get('/content/content-payment', [contentPaymentController::class, 'index'])->name('contentPayment');
 
-Route::get('/content/content-payment/payment-detail', [contentPaymentController::class, 'paymentDetail'])->name('paymentDetail');
 
