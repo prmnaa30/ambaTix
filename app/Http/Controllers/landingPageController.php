@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Event;
+use App\Models\EventCategory;
 use Illuminate\Http\Request;
 
 class landingPageController extends Controller
@@ -9,6 +11,10 @@ class landingPageController extends Controller
     public function index()
     {
         $layout = auth()->check() ? 'layouts.app' : 'layouts.guest';
-        return view('landing', compact('layout'));
+        $categories = EventCategory::all();
+
+        $events = Event::all();
+
+        return view('landing', compact('layout', 'categories', 'events'));
     }
 }
