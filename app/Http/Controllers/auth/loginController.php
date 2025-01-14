@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
 class loginController extends Controller
@@ -21,9 +23,12 @@ class loginController extends Controller
             'password' => 'required',
         ]);
 
+        $user = User::where('email', $request->email)->first();
+
         $rememberMe = $request->has('remember');
-        
-        if (Auth::attempt($request->only('email', 'password'), $rememberMe)) {
+
+        if ($user && Hash::check($request->password, $user->password)) {
+            Auth::login($user, $rememberMe);
             $request->session()->regenerate();
             return redirect()->route('landing');
         }
