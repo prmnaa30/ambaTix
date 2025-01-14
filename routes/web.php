@@ -3,6 +3,7 @@
 use App\Http\Controllers\adminPageController;
 use App\Http\Controllers\auth\loginController;
 use App\Http\Controllers\auth\registerController;
+use App\Http\Controllers\auth\profileController;
 use App\Http\Controllers\eventCategoriesController;
 use App\Http\Controllers\eventController;
 use App\Http\Controllers\landingPageController;
@@ -37,6 +38,11 @@ Route::middleware(['auth'])->group(function (){
   Route::post('event/{id}/tickets/add', [paymentController::class, 'addTicket'])->name('addTicket');
   Route::post('event/{id}/tickets/{cartId}/remove', [paymentController::class, 'removeTicket'])->name('removeTicket');
   Route::get('event/{id}/tickets/clear', [paymentController::class, 'clearCart'])->name('clearCart');
+
+  Route::get('/edit-profile', [profileController::class, 'editProfile'])->name('editProfile');
+  Route::get('/edit-password', [profileController::class, 'editPassword'])->name('editPassword');
+  Route::post('/edit-profile', [profileController::class, 'updateProfile'])->name('updateProfile');
+  Route::post('/edit-password', [profileController::class, 'updatePassword'])->name('updatePassword');
 });
 
 /** Admin */
