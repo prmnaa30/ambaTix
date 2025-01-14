@@ -12,6 +12,7 @@ class TransactionDetail extends Model
         'transaction_id',
         'ticket_id',
         'quantity',
+        'price',
     ];
 
     public function transaction()

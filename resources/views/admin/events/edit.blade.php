@@ -52,6 +52,15 @@
                         placeholder="Masukkan Tanggal Event" 
                         label="Tanggal Event" 
                     />
+                    <x-form-group 
+                        inputTag="input" 
+                        id="time" 
+                        name="time" 
+                        type="time" 
+                        value="{{ $event->time }}"
+                        placeholder="Masukkan Waktu Event" 
+                        label="Waktu Event" 
+                    />
                     <div class="flex flex-col gap-1 text-text-100">
                         <label for="event_categories_id">Kategori Event</label>
                         <select id="event_categories_id" class="w-full border-2 border-primary-500 focus:outline-none focus:border-primary-400 transition-colors duration-500 ease rounded-lg p-1 bg-transparent placeholder:text-text-500 text-text-300" name="event_categories_id">

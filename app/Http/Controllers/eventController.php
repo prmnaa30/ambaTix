@@ -44,6 +44,7 @@ class eventController extends Controller
             'description' => 'string|required',
             'location' => 'string|max:255|required',
             'date' => 'date|required',
+            'time' => 'required',
             'organizer_name' => 'string|max:100|required',
             'event_categories_id' => 'numeric|required',
             'imageInput' => 'file|mimetypes:image/webp,image/png|required',
@@ -67,6 +68,7 @@ class eventController extends Controller
             'description' => $request->description,
             'location' => $request->location,
             'date' => $request->date,
+            'time' => $request->time,
             'organizer_name' => $request->organizer_name,
             'event_categories_id' => $event_category_id,
             'image_url' => $imageUrl
@@ -90,7 +92,7 @@ class eventController extends Controller
         $layout = auth()->check() ? 'layouts.app' : 'layouts.guest';
         $categories = EventCategory::all();
 
-        return view('contentLanding', compact('event', 'layout', 'categories'));
+        return view('home.event-detail', compact('event', 'layout', 'categories'));
     }
 
     /**
@@ -113,6 +115,7 @@ class eventController extends Controller
             'description' => 'string|required',
             'location' => 'string|max:255|required',
             'date' => 'date|required',
+            'time' => 'required',
             'organizer_name' => 'string|max:100|required',
             'event_categories_id' => 'numeric|required',
             'imageInput' => 'file|mimetypes:image/webp,image/png',
@@ -127,6 +130,7 @@ class eventController extends Controller
             'description' => $request->description,
             'location' => $request->location,
             'date' => $request->date,
+            'time' => $request->time,
             'organizer_name' => $request->organizer_name,
             'event_categories_id' => $request->event_categories_id,
         ]);

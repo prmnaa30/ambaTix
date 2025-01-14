@@ -6,17 +6,18 @@ use App\Http\Controllers\auth\registerController;
 use App\Http\Controllers\eventCategoriesController;
 use App\Http\Controllers\eventController;
 use App\Http\Controllers\landingPageController;
-use App\Http\Controllers\contentLandingController;
-use App\Http\Controllers\contentPaymentController;
+use App\Http\Controllers\paymentController;
+use App\Http\Controllers\paymentMethodController;
 use App\Http\Controllers\searchController;
 use App\Http\Controllers\ticketController;
+use App\Http\Controllers\transactionController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [landingPageController::class, 'index'])->name('landing');
 
 Route::get('/search', [searchController::class, 'searchEvent'])->name('search');
 
-Route::get('/detail-event/{id}', [eventController::class, 'show'])->name('detail-event'); ;
+Route::get('/event/{id}', [eventController::class, 'show'])->name('detail-event');
 
 //** Guest */
 Route::middleware('guest')->group(function () {
@@ -28,9 +29,14 @@ Route::middleware('guest')->group(function () {
 
 //** Authorized */
 Route::middleware(['auth'])->group(function (){
-  Route::get('/content/content-payment', [contentPaymentController::class, 'index'])->name('contentPayment');
-  Route::get('/content/content-payment/payment-detail', [contentPaymentController::class, 'paymentDetail'])->name('paymentDetail');
-  Route::get('/content/content-payment/payment-method', [contentPaymentController::class, 'paymentMethod'])->name('paymentMethod');
+  Route::get('event/{id}/payment/payment-detail', [paymentController::class, 'paymentDetail'])->name('paymentDetail');
+  Route::get('payment-method/{paymentMethodId}/{transactionId}', [paymentController::class, 'paymentMethod'])->name('paymentMethod');
+  Route::post('payment/transaction/add', [transactionController::class, 'createTransaction'])->name('createTransaction');
+  
+  Route::get('event/{id}/tickets', [paymentController::class, 'ticketList'])->name('ticketList');
+  Route::post('event/{id}/tickets/add', [paymentController::class, 'addTicket'])->name('addTicket');
+  Route::post('event/{id}/tickets/{cartId}/remove', [paymentController::class, 'removeTicket'])->name('removeTicket');
+  Route::get('event/{id}/tickets/clear', [paymentController::class, 'clearCart'])->name('clearCart');
 });
 
 /** Admin */
@@ -38,10 +44,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
   Route::get('/admin', [adminPageController::class, 'index'])->name('admin');
 
   // Events
-  Route::resource('/events', eventController::class);
+  Route::resource('/admin/events', eventController::class);
 
   // Tickets
-  Route::prefix('/events/{eventId}')->name('events.tickets.')->group(function () {
+  Route::prefix('admin/events/{eventId}')->name('events.tickets.')->group(function () {
     Route::get('/tickets', [ticketController::class, 'index'])->name('index');
     Route::get('/tickets/create', [ticketController::class, 'create'])->name('create');
     Route::post('/tickets', [ticketController::class, 'store'])->name('store');
@@ -51,18 +57,21 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
   });
 
   // Categories
-  Route::resource('kategori', eventCategoriesController::class);
+  Route::resource('admin/kategori', eventCategoriesController::class);
+
+  // Payment Method
+  Route::resource('admin/payment-method', paymentMethodController::class);
 
   // Transaksi
-  Route::get('/transaksi', [adminPageController::class, 'transaksi'])->name('transaksi');
+  Route::get('admin/transaksi', [transactionController::class, 'adminTransactionIndex'])->name('admin.transaksi');
+  Route::get('admin/transaksi/{id}', [transactionController::class, 'adminTransactionShow'])->name('transaksi.show');
+  Route::put('admin/transaksi/{id}/update', [paymentController::class, 'updatePaymentStatus'])->name('transaksi.update');
 
   // User
-  Route::get('/user', [adminPageController::class, 'user'])->name('user');
+  Route::get('admin/user', [adminPageController::class, 'userData'])->name('admin.user');
 });
 
 Route::get('/logout', [loginController::class, 'logout'])->name('logout');
-
-Route::get('/content', [contentLandingController::class, 'index'])->name('contentLanding');
 
 
 

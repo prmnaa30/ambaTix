@@ -19,6 +19,12 @@
             </button>
         </div>
         <div class="flex flex-col gap-1 mt-1 pb-1 border-b-2 border-primary-900">
+            
+            <a href="{{ route('admin') }}"
+                class="hover:bg-primary-500 hover:rounded hover:transition-all duration-500 py-1 px-2 flex gap-2">
+                <img src="{{ asset('icons/profile.svg') }}" alt="">
+                <p>Admin</p>
+            </a>
             <a href="{{ route('landing') }}"
                 class="hover:bg-primary-500 hover:rounded hover:transition-all duration-500 py-1 px-2 flex gap-2">
                 <img src="{{ asset('icons/receipt.svg') }}" alt="">

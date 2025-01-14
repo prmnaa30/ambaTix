@@ -31,11 +31,9 @@ class loginController extends Controller
             Auth::login($user, $rememberMe);
             $request->session()->regenerate();
             return redirect()->route('landing');
+        } else {
+            return redirect()->route('login')->with('errors', 'Email atau password salah.');
         }
-
-        throw ValidationException::withMessages([
-            'email' => ['Email atau Password Salah']
-        ]);
     }
 
     public function logout(Request $request)

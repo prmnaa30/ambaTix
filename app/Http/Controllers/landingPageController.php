@@ -15,6 +15,6 @@ class landingPageController extends Controller
 
         $events = Event::all();
 
-        return view('landing', compact('layout', 'categories', 'events'));
+        return view('home.landing', compact('layout', 'categories', 'events'));
     }
 }

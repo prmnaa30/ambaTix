@@ -26,6 +26,10 @@
                                         <td>: {{ $event->date }}</td>
                                     </tr>
                                     <tr>
+                                        <td>Waktu</td>
+                                        <td>: {{ $event->time }}</td>
+                                    </tr>
+                                    <tr>
                                         <td>Kategori</td>
                                         <td>: {{ $event->category->name }}</td>
                                     </tr>

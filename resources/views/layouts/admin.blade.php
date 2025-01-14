@@ -82,18 +82,23 @@
                 <img src="{{ asset('icons/calendar.svg') }}" alt="">
                 <p class="text-base">Event</p>
             </a>
-            <a href="{{ Route::is('categories.') ? '#' : route('categories.index') }}"
+            <a href="{{ Route::is('categories.') ? '#' : route('kategori.index') }}"
                 class="flex gap-2 px-2 py-1 hover:bg-accent-400 {{ Route::is('categories.*') ? 'bg-accent-400' : '' }} transition-colors duration-500 rounded-lg mt-2">
                 <img src="{{ asset('icons/category.svg') }}" alt="">
                 <p class="text-base">Kategori</p>
             </a>
-            <a href=""
-                class="flex gap-2 px-2 py-1 hover:bg-accent-400 transition-colors duration-500 rounded-lg mt-2">
+            <a href="{{ Route::is('payment-method.') ? '#' : route('payment-method.index') }}"
+                class="flex gap-2 px-2 py-1 hover:bg-accent-400 {{ Route::is('categories.*') ? 'bg-accent-400' : '' }} transition-colors duration-500 rounded-lg mt-2">
+                <img src="{{ asset('icons/payment.svg') }}" alt="">
+                <p class="text-base">Pembayaran</p>
+            </a>
+            <a href="{{ Route::is('admin.transaksi') ? '#' : route('admin.transaksi') }}"
+                class="flex gap-2 px-2 py-1 hover:bg-accent-400 {{ Route::is('admin.transaksi.*') ? 'bg-accent-400' : '' }} transition-colors duration-500 rounded-lg mt-2">
                 <img src="{{ asset('icons/receipt2.svg') }}" alt="">
                 <p class="text-base">Transaksi</p>
             </a>
-            <a href=""
-                class="flex gap-2 px-2 py-1 hover:bg-accent-400 transition-colors duration-500 rounded-lg mt-2">
+            <a href="{{ Route::is('admin.user') ? '#' : route('admin.user') }}"
+                class="flex gap-2 px-2 py-1 hover:bg-accent-400 {{ Route::is('admin.user.*') ? 'bg-accent-400' : '' }} transition-colors duration-500 rounded-lg mt-2">
                 <img src="{{ asset('icons/user2.svg') }}" alt="">
                 <p class="text-base">User</p>
             </a>

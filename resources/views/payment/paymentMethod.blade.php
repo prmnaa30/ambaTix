@@ -1,8 +1,8 @@
-@extends($layout)
+@extends('layouts.app')
 
 @section('content')
 
-    <div id="container" class="bg-primary-800 rounded-2xl py-10 px-16 flex justify-center">
+    <div id="container" class="bg-primary-800 rounded-2xl py-10 px-16 flex flex-col items-center gap-4 justify-center">
         <div class="w-2/3 p-8 rounded-lg bg-primary-950 items-center text-center">
             <p class="font-bold">Selesaikan Pembayaran dalam</p>
             <p id="countdown" class="text-3xl mt-4 text-yellow-500 font-bold"></p>
@@ -14,24 +14,24 @@
                     <div class="mb-4">
                         <p>Nomor Akun Virtual</p>
                         <div class="flex">
-                            <p class="font-bold text-2xl text-black" id="virtual-account-number">8123456789012345</p>
+                            <p class="font-bold text-2xl text-black" id="virtual-account-number">{{ $paymentMethod->account_number }}</p>
                             <button id="copy-button" class="text-sm ml-4">Copy</button>
                         </div>
                     </div>
 
                     <div class="mb-4">
                         <p>Total</p>
-                        <p class="font-bold text-2xl text-black">Rp. 0</p>
+                        <p class="font-bold text-2xl text-black">Rp. {{ $transaction->total_price }}</p>
                     </div>
 
                     <div>
                         <p>Nomor Faktur</p>
-                        <p class="font-bold text-2xl text-black">INV-20250101-1234</p>
+                        <p class="font-bold text-2xl text-black">{{ $transaction->transaction_code }}</p>
                     </div>
 
                 </div>
                 <div class="col-span-1 border border-primary-400 rounded-md flex justify-center">
-                    <img src="{{ asset('icons/bank-bni.svg') }}" alt="Logo BNI" class="rounded-md px-4 py-2">                 
+                    <img src="{{ $paymentMethod->method_image_url }}" alt="Logo BNI" class="rounded-md px-4 py-2">                 
                 </div>
             </div>
 
@@ -60,7 +60,7 @@
                         <li>Pilih menu "Tagihan Virtual Account" dan kemudian pilih akun debit.</li>
                         <li>
                             Masukkan Nomor Virtual Account Anda 
-                            <span class="font-bold text-blue-600">8123456789012345</span> 
+                            <span class="font-bold text-blue-600">{{ $paymentMethod->account_number }}</span> 
                             pada menu "Input Baru".
                         </li>
                         <li>Jumlah tagihan akan ditampilkan di layar.</li>
@@ -75,6 +75,10 @@
                 </div>
             </div>
 
+        </div>
+
+        <div class="w-2/3 flex justify-center">
+            <a href="{{ route('landing') }}" class="text-primary-400 w-full hover:text-primary-600 transition-all duration-500 px-4 py-2 rounded-lg bg-primary-950 items-center text-center">Selesai</a>
         </div>
 
     </div>
