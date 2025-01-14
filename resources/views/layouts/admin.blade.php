@@ -82,8 +82,8 @@
                 <img src="{{ asset('icons/calendar.svg') }}" alt="">
                 <p class="text-base">Event</p>
             </a>
-            <a href="{{ Route::is('categories.') ? '#' : route('categories.index') }}"
-                class="flex gap-2 px-2 py-1 hover:bg-accent-400 {{ Route::is('categories.*') ? 'bg-accent-400' : '' }} transition-colors duration-500 rounded-lg mt-2">
+            <a href="{{ Route::is('kategori.') ? '#' : route('kategori.index') }}"
+                class="flex gap-2 px-2 py-1 hover:bg-accent-400 {{ Route::is('kategori.*') ? 'bg-accent-400' : '' }} transition-colors duration-500 rounded-lg mt-2">
                 <img src="{{ asset('icons/category.svg') }}" alt="">
                 <p class="text-base">Kategori</p>
             </a>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\adminPageController;
 use App\Http\Controllers\auth\loginController;
 use App\Http\Controllers\auth\registerController;
+use App\Http\Controllers\auth\profileController;
 use App\Http\Controllers\eventCategoriesController;
 use App\Http\Controllers\eventController;
 use App\Http\Controllers\landingPageController;
@@ -16,7 +17,9 @@ Route::get('/', [landingPageController::class, 'index'])->name('landing');
 
 Route::get('/search', [searchController::class, 'searchEvent'])->name('search');
 
-Route::get('/detail-event/{id}', [eventController::class, 'show'])->name('detail-event'); ;
+Route::get('/detail-event/{id}', [eventController::class, 'show'])->name('detail-event'); 
+
+
 
 //** Guest */
 Route::middleware('guest')->group(function () {
@@ -31,6 +34,11 @@ Route::middleware(['auth'])->group(function (){
   Route::get('/content/content-payment', [contentPaymentController::class, 'index'])->name('contentPayment');
   Route::get('/content/content-payment/payment-detail', [contentPaymentController::class, 'paymentDetail'])->name('paymentDetail');
   Route::get('/content/content-payment/payment-method', [contentPaymentController::class, 'paymentMethod'])->name('paymentMethod');
+
+  Route::get('/edit-profile', [profileController::class, 'editProfile'])->name('editProfile');
+  Route::get('/edit-password', [profileController::class, 'editPassword'])->name('editPassword');
+  Route::post('/edit-profile', [profileController::class, 'updateProfile'])->name('updateProfile');
+  Route::post('/edit-password', [profileController::class, 'updatePassword'])->name('updatePassword');
 });
 
 /** Admin */
