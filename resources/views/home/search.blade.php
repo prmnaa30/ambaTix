@@ -5,7 +5,7 @@
         <div class="flex justify-between">
             <h1 class="font-bold text-lg">Hasil pencarian</h1>
             <div class="flex gap-4">
-                <p class="font-semibold">Kategori: <span class="font-normal">{{ $category->name }}</span></p>
+                <p class="font-semibold">Kategori: <span class="font-normal">{{ $category->name ?? 'Semua' }}</span></p>
                 <a href="{{ route('search') }}" class="text-blue-600 font-semibold">Reset Filter</a>
             </div>
         </div>
