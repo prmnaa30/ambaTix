@@ -14,6 +14,7 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body class="font-sans antialiased bg-background-950 text-text-100">
@@ -92,7 +93,7 @@
                 <img src="{{ asset('icons/payment.svg') }}" alt="">
                 <p class="text-base">Pembayaran</p>
             </a>
-            <a href="{{ Route::is('admin.transaksi') ? '#' : route('admin.transaksi') }}"
+            <a href="{{ Route::is('admin.transaksi.') ? '#' : route('admin.transaksi.index') }}"
                 class="flex gap-2 px-2 py-1 hover:bg-accent-400 {{ Route::is('admin.transaksi.*') ? 'bg-accent-400' : '' }} transition-colors duration-500 rounded-lg mt-2">
                 <img src="{{ asset('icons/receipt2.svg') }}" alt="">
                 <p class="text-base">Transaksi</p>
