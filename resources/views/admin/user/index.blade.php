@@ -11,6 +11,7 @@
                 <th>Email</th>
                 <th>No Telp</th>
                 <th>Alamat</th>
+                <th>Tanggal Bergabung</th>
             </thead>
             <tbody>
                 @foreach ($users as $key => $user)
@@ -20,6 +21,7 @@
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->phone }}</td>
                         <td>{{ $user->alamat }}</td>
+                        <td>{{ $user->created_at }}</td>
                     </tr>
                 @endforeach
             </tbody>
