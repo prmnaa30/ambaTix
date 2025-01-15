@@ -6,6 +6,7 @@ use App\Models\PaymentMethod;
 use App\Models\Ticket;
 use App\Models\Transaction;
 use App\Models\TransactionDetail;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -22,7 +23,18 @@ class transactionController extends Controller
     {
         $transactionsPending = Transaction::where('status', 'pending')->orderBy('created_at', 'desc')->get();
         $transactionsSuccess = Transaction::where('status', 'success')->orderBy('created_at', 'desc')->get();
-        return view('admin.transaksi.index', compact('transactionsPending', 'transactionsSuccess'));
+        $transactionsFailed = Transaction::where('status', 'failed')->orderBy('created_at', 'desc')->get();
+        return view('admin.transaksi.index', compact('transactionsPending', 'transactionsSuccess', 'transactionsFailed'));
+    }
+
+    public function adminTransactionShow($id)
+    {
+        $transaction = Transaction::find($id);
+        $user = User::find($transaction->user_id);
+        $paymentMethod = PaymentMethod::find($transaction->payment_method_id);
+        $transactionDetails = TransactionDetail::where('transaction_id', $id)->get();
+
+        return view('admin.transaksi.show', compact('transaction', 'transactionDetails', 'user', 'paymentMethod'));
     }
 
     public function createTransaction(Request $request)

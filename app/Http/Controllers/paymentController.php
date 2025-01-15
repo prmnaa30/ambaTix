@@ -111,12 +111,12 @@ class paymentController extends Controller
         return view('payment.paymentMethod', compact('categories', 'paymentMethod', 'transaction'));
     }
 
-    public function updatePaymentStatus($transactionId)
+    public function updatePaymentStatus(Request $request, $transactionId)
     {
         $transaction = Transaction::find($transactionId);
         
         if ($transaction) {
-            $transaction->status = 'success';
+            $transaction->status = $request->status;
             $transaction->save();
         }
 
