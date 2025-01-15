@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\adminPageController;
+use App\Http\Controllers\adminDashboardController;
 use App\Http\Controllers\auth\loginController;
 use App\Http\Controllers\auth\registerController;
 use App\Http\Controllers\auth\profileController;
@@ -47,7 +47,7 @@ Route::middleware(['auth'])->group(function (){
 
 /** Admin */
 Route::middleware(['auth', 'role:admin'])->group(function () {
-  Route::get('/admin', [adminPageController::class, 'index'])->name('admin');
+  Route::get('/admin', [adminDashboardController::class, 'index'])->name('admin');
 
   // Events
   Route::resource('/admin/events', eventController::class);
@@ -69,12 +69,12 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
   Route::resource('admin/payment-method', paymentMethodController::class);
 
   // Transaksi
-  Route::get('admin/transaksi', [transactionController::class, 'adminTransactionIndex'])->name('admin.transaksi');
-  Route::get('admin/transaksi/{id}', [transactionController::class, 'adminTransactionShow'])->name('transaksi.show');
-  Route::put('admin/transaksi/{id}/update', [paymentController::class, 'updatePaymentStatus'])->name('transaksi.update');
+  Route::get('admin/transaksi', [transactionController::class, 'adminTransactionIndex'])->name('admin.transaksi.index');
+  Route::get('admin/transaksi/{id}/detail', [transactionController::class, 'adminTransactionShow'])->name('admin.transaksi.show');
+  Route::put('admin/transaksi/{id}/update', [paymentController::class, 'updatePaymentStatus'])->name('admin.transaksi.update');
 
   // User
-  Route::get('admin/user', [adminPageController::class, 'userData'])->name('admin.user');
+  Route::get('admin/user', [adminDashboardController::class, 'userData'])->name('admin.user');
 });
 
 Route::get('/logout', [loginController::class, 'logout'])->name('logout');
