@@ -6,7 +6,7 @@
 
         <p>Transaksi Pending</p>
         <div class="grid grid-cols-2 gap-4">
-            @foreach ($transactionsPending as $index => $transaction)
+            @forelse ($transactionsPending as $index => $transaction)
                 <div class="flex justify-between items-center gap-4 bg-primary-800 rounded-lg p-2">
                     <p>{{ $index + 1 }}</p>
                     <p>{{ $transaction->transaction_code }}</p>
@@ -26,7 +26,9 @@
                         </form>
                     </div>
                 </div>
-            @endforeach
+            @empty
+                <p>-</p>
+            @endforelse
         </div>
 
         <p>Transaksi Berhasil</p>
