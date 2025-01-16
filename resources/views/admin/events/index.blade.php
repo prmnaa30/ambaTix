@@ -4,6 +4,67 @@
     <section class="flex flex-col gap-4">
         <a href="{{ route('events.create') }}" class="bg-primary-500 rounded-lg p-2 w-fit">Tambah Event</a>
 
+        <form action="{{ route('events.index') }}" method="GET" class="flex gap-2">
+            <select name="sort_method" id="sort_method" class="rounded-lg px-2 py-1 bg-primary-800 focus:outline-primary-400">
+                <option value="" {{ $sortMethod == '' ? 'selected' : '' }}>Urut Berdasarkan</option>
+                <option value="category" {{ $sortMethod == 'category' ? 'selected' : '' }}>Kategori</option>
+                <option value="date" {{ $sortMethod == 'date' ? 'selected' : '' }}>Tanggal</option>
+            </select>
+
+            <select name="sort_order" id="sort_order" style="display: none"
+                class="rounded-lg px-2 py-1 bg-primary-800 focus:outline-primary-400">
+                <option value="desc" {{ $sortMethod == 'date' && $sortByDateOrder == 'desc' ? 'selected' : '' }}>Menurun
+                </option>
+                <option value="asc" {{ $sortMethod == 'date' && $sortByDateOrder == 'asc' ? 'selected' : '' }}>Menaik
+                </option>
+            </select>
+
+            <select name="sort_category" id="sort_category" style="display: none"
+                class="rounded-lg px-2 py-1 bg-primary-800 focus:outline-primary-400">
+                @foreach ($categories as $category)
+                    <option value="{{ $category->id }}"
+                        {{ $sortMethod == 'category' && $sortByCategoryId == $category->id ? 'selected' : '' }}>
+                        {{ $category->name }}</option>
+                @endforeach
+            </select>
+
+            <button
+                class="bg-primary-700 hover:bg-primary-600 hover:text-text-950 transition-all duration-500 ease rounded-lg p-2"
+                type="submit">Tampilkan</button>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', () => {
+                    const sortMethodSelect = document.getElementById('sort_method');
+                    const sortOrderSelect = document.getElementById('sort_order');
+                    const sortCategorySelect = document.getElementById('sort_category');
+
+                    if (sortMethodSelect.value === 'category') {
+                        sortCategorySelect.style.display = 'block';
+                        sortOrderSelect.style.display = 'none';
+                    } else if (sortMethodSelect.value === 'date') {
+                        sortCategorySelect.style.display = 'none';
+                        sortOrderSelect.style.display = 'block';
+                    } else {
+                        sortCategorySelect.style.display = 'none';
+                        sortOrderSelect.style.display = 'none';
+                    }
+
+                    sortMethodSelect.addEventListener('change', () => {
+                        if (sortMethodSelect.value === 'category') {
+                            sortCategorySelect.style.display = 'block';
+                            sortOrderSelect.style.display = 'none';
+                        } else if (sortMethodSelect.value === 'date') {
+                            sortCategorySelect.style.display = 'none';
+                            sortOrderSelect.style.display = 'block';
+                        } else {
+                            sortCategorySelect.style.display = 'none';
+                            sortOrderSelect.style.display = 'none';
+                        }
+                    });
+                });
+            </script>
+        </form>
+
         <div class="grid grid-cols-2 gap-4">
             @foreach ($events as $event)
                 <div class="bg-primary-800 rounded-lg p-2 h-56 flex gap-2">
@@ -37,7 +98,8 @@
                             </div>
                         </div>
                         <div class="flex items-center gap-2">
-                            <a href="{{ route('events.tickets.index', ['eventId' => $event->id]) }}" class="bg-primary-400 rounded-lg px-2 py-1 text-sm text-text-950">Daftar Tiket</a>
+                            <a href="{{ route('events.tickets.index', ['eventId' => $event->id]) }}"
+                                class="bg-primary-400 rounded-lg px-2 py-1 text-sm text-text-950">Daftar Tiket</a>
                             <a href="{{ route('events.edit', $event->id) }}" class="bg-orange-500 rounded-lg p-1">
                                 <img src="{{ asset('icons/Edit.svg') }}" alt="">
                             </a>

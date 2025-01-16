@@ -19,10 +19,25 @@ class eventController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $events = Event::with('category')->get();
-        return view('admin.events.index', compact('events'));
+        $sortMethod = $request->input('sort_method');
+        $sortByDateOrder = $request->input('sort_order');
+        $sortByCategoryId = $request->input('sort_category');
+        
+        $query = Event::query();
+        if ($sortMethod === 'category' && $sortByCategoryId) {
+            $query->where('event_categories_id', $sortByCategoryId);
+        } elseif ($sortMethod === 'date' && $sortByDateOrder) {
+            $query->orderBy('date', $sortByDateOrder);
+        } else {
+            $query->orderBy('created_at', 'desc');
+        }
+
+        $events = $query->get();
+        $categories = EventCategory::all();
+
+        return view('admin.events.index', compact('events', 'categories', 'sortMethod', 'sortByDateOrder', 'sortByCategoryId'));
     }
 
     /**
