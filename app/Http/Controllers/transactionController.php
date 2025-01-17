@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Event;
+use App\Models\EventCategory;
 use App\Models\PaymentMethod;
 use App\Models\Ticket;
 use App\Models\Transaction;
@@ -15,8 +17,10 @@ class transactionController extends Controller
 {
     public function showUserTransaction()
     {
+        $categories = EventCategory::all();
+        $events = Event::all();
         $transactions = Transaction::where('user_id', auth()->user()->id)->orderBy('created_at', 'desc')->get();
-        return view('transaction.userTransaction', compact('transactions'));
+        return view('user.transactions', compact('transactions', 'categories', 'events')); 
     }
 
     public function adminTransactionIndex(Request $request)

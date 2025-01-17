@@ -39,6 +39,9 @@ Route::middleware(['auth'])->group(function (){
   Route::post('event/{id}/tickets/{cartId}/remove', [paymentController::class, 'removeTicket'])->name('removeTicket');
   Route::get('event/{id}/tickets/clear', [paymentController::class, 'clearCart'])->name('clearCart');
 
+  Route::get('/transaction', [transactionController::class, 'showUserTransaction'])->name('showUserTransaction');
+  Route::get('/ticket', [ticketController::class, 'show'])->name('showUserTicket');
+
   Route::get('/edit-profile', [profileController::class, 'editProfile'])->name('editProfile');
   Route::get('/edit-password', [profileController::class, 'editPassword'])->name('editPassword');
   Route::post('/edit-profile', [profileController::class, 'updateProfile'])->name('updateProfile');

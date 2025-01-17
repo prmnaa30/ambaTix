@@ -28,12 +28,12 @@
                     <p>Admin</p>
                 </a>
             @endif
-            <a href="{{ route('landing') }}"
+            <a href="{{ route('showUserTransaction') }}"
                 class="hover:bg-primary-500 hover:rounded hover:transition-all duration-500 py-1 px-2 flex gap-2">
                 <img src="{{ asset('icons/receipt.svg') }}" alt="">
                 <p>Transaksi</p>
             </a>
-            <a href="{{ route('landing') }}"
+            <a href="{{ route('showUserTicket') }}"
                 class="hover:bg-primary-500 hover:rounded hover:transition-all duration-500 py-1 px-2 flex gap-2">
                 <img src="{{ asset('icons/ticket.svg') }}" alt="">
                 <p>Ticket</p>

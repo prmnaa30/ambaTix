@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\EventCategory;
 use App\Models\Ticket;
+use App\Models\Transaction;
+use App\Models\TransactionDetail;
 use Illuminate\Http\Request;
 
 class ticketController extends Controller
@@ -56,9 +59,34 @@ class ticketController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    
+    public function show()
     {
-        //
+        $categories = EventCategory::all();
+        $events = Event::all();
+        
+        $userId = auth()->user()->id;
+    
+        $transactions = Transaction::where('user_id', $userId)->where('status', 'success')->get();
+
+        $tickets = [];
+        foreach ($transactions as $transaction) {
+            $transactionDetails = $transaction->transactionDetails;
+            foreach ($transactionDetails as $transactionDetail) {
+                $ticket = $transactionDetail->ticket;
+                $event = $ticket->event;
+                for ($i = 0; $i < $transactionDetail->quantity; $i++) {
+                    $tickets[] = [
+                        'event_name' => $event->name,
+                        'event_image_url' => $event->image_url,
+                        'ticket_type' => $ticket->ticket_type,
+                        'price' => $ticket->price,
+                    ];
+                }
+            }
+        }
+
+        return view('user.tickets', compact('tickets', 'categories', 'events'));
     }
 
     /**

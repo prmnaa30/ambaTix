@@ -33,7 +33,7 @@
                         name="password" 
                         type="password" 
                         placeholder="Masukkan Password" 
-                        label="Password"
+                        label="Password Baru"
                         minlength="8"
                     />
                     <x-form-group 
