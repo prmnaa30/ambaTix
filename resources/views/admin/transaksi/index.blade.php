@@ -21,7 +21,7 @@
                         <form action="{{ route('admin.transaksi.update', $transaction->id) }}" method="POST">
                             @csrf
                             @method('PUT')
-                            <input type="hidden" name="status" value="pending">
+                            <input type="hidden" name="status" value="success">
                             <button type="submit" class="bg-accent-200 text-text-900 rounded-lg px-2 py-1 w-fit">Sukses</button>
                         </form>
                     </div>
