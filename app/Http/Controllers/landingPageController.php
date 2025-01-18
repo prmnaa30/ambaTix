@@ -13,7 +13,9 @@ class landingPageController extends Controller
         $layout = auth()->check() ? 'layouts.app' : 'layouts.guest';
         $categories = EventCategory::all();
 
-        $events = Event::all();
+        $events = Event::take(8)
+                        ->orderBy('created_at', 'desc')
+                        ->get();
 
         return view('home.landing', compact('layout', 'categories', 'events'));
     }
