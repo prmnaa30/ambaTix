@@ -4,8 +4,8 @@
 
     <div id="container" class="bg-primary-800 rounded-2xl py-10 px-16 flex flex-col items-center gap-4 justify-center">
         <div class="w-2/3 p-8 rounded-lg bg-primary-950 items-center text-center">
-            <p class="font-bold">Selesaikan Pembayaran dalam</p>
-            <p id="countdown" class="text-3xl mt-4 text-yellow-500 font-bold"></p>
+            <p class="font-bold">Selesaikan Pembayaran Sebelum</p>
+            <p class="text-3xl mt-4 text-yellow-500 font-bold">{{ $paymentDeadline }}</p>
 
             <!-- Pembayaran menggunakan metode pilihan -->
             <div class="grid grid-cols-3 gap-4 mt-4 border-2 border-primary-400 rounded-xl p-4">
@@ -78,44 +78,12 @@
         </div>
 
         <div class="w-2/3 flex justify-center">
-            <a href="{{ route('landing') }}" class="text-primary-400 w-full hover:text-primary-600 transition-all duration-500 px-4 py-2 rounded-lg bg-primary-950 items-center text-center">Selesai</a>
+            <a href="{{ route('showUserTransaction') }}" class="text-primary-400 w-full hover:text-primary-600 transition-all duration-500 px-4 py-2 rounded-lg bg-primary-950 items-center text-center">Selesai</a>
         </div>
 
     </div>
 
     <script>
-        // Set waktu countdown (dalam detik)
-        var waktuCountdown = 30 * 60; // 30 menit
-
-        // Tampilkan waktu countdown
-        var countdownElement = document.getElementById('countdown');
-        countdownElement.innerHTML = formatWaktu(waktuCountdown);
-
-        // Fungsi untuk memformat waktu
-        function formatWaktu(waktu) {
-            var menit = Math.floor(waktu / 60);
-            var detik = waktu % 60;
-            return `${menit.toString().padStart(2, '0')}:${detik.toString().padStart(2, '0')}`;
-        }
-
-        // Fungsi untuk mengupdate waktu countdown
-        function updateCountdown() {
-            waktuCountdown--;
-            countdownElement.innerHTML = formatWaktu(waktuCountdown);
-
-            // Jika waktu countdown habis, lakukan aksi
-            if (waktuCountdown <= 0) {
-                // Aksi ketika waktu countdown habis
-                console.log('Waktu countdown habis!');
-            } else {
-                // Update waktu countdown setiap detik
-                setTimeout(updateCountdown, 1000);
-            }
-        }
-
-        // Mulai countdown
-        updateCountdown();
-
         // Copy Nomor VA
         document.getElementById('copy-button').addEventListener('click', function() {
             var virtualAccountNumber = document.getElementById('virtual-account-number').textContent;

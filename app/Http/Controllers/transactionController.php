@@ -70,7 +70,7 @@ class transactionController extends Controller
 
         foreach ($cart as $item) {
             $ticket = Ticket::findOrFail($item['ticket_id']);
-            $totalPrice = $ticket->price * $item['quantity'];
+            $totalPrice += $ticket->price * $item['quantity'];
             $totalQuantity += $item['quantity'];
         }
 
