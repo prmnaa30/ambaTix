@@ -7,6 +7,7 @@ use App\Models\EventCategory;
 use App\Models\PaymentMethod;
 use App\Models\Ticket;
 use App\Models\Transaction;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class paymentController extends Controller
@@ -107,6 +108,7 @@ class paymentController extends Controller
 
         $transaction = Transaction::with('payment')->find($transactionId);
         $paymentMethod = PaymentMethod::find($paymentMethodId);
+        $paymentDeadline = Carbon::now()->addHour();
         
         return view('payment.paymentMethod', compact('categories', 'paymentMethod', 'transaction'));
     }
