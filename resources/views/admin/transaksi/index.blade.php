@@ -34,7 +34,7 @@
         <p>Transaksi Berhasil</p>
         <div class="grid grid-cols-3 gap-4">
             @foreach ($transactionsSuccess as $transaction)
-                <a href="{{ route('admin.transaksi.show', $transaction->id) }}" class="bg-primary-800 rounded-lg p-2 w-full">
+                <a href="{{ route('admin.transaksi.show', $transaction->id) }}" class="bg-primary-800 hover:bg-primary-600 transition-all duration-500 rounded-lg p-2 w-full">
                     <table>
                         <tr>
                             <td>Kode Transaksi</td>
@@ -64,7 +64,7 @@
         <p>Transaksi Gagal</p>
         <div class="grid grid-cols-3 gap-4">
             @foreach ($transactionsFailed as $transaction)
-                <a href="{{ route('admin.transaksi.show', $transaction->id) }}" class="bg-primary-800 rounded-lg p-2 w-full">
+                <a href="{{ route('admin.transaksi.show', $transaction->id) }}" class="bg-primary-800 hover:bg-primary-600 transition-all duration-500 rounded-lg p-2 w-full">
                     <table>
                         <tr>
                             <td>Kode Transaksi</td>

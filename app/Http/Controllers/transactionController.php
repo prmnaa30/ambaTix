@@ -23,6 +23,18 @@ class transactionController extends Controller
         return view('user.transactions', compact('transactions', 'categories', 'events')); 
     }
 
+    public function showDetailTransaction($id)
+    {
+        $categories = EventCategory::all();
+        $events = Event::all();
+
+        $transaction = Transaction::find($id);
+        $user = User::find($transaction->user_id);
+        $paymentMethod = PaymentMethod::find($transaction->payment_method_id);
+        $transactionDetails = TransactionDetail::where('transaction_id', $id)->get();
+        return view('user.detailTransaction', compact('transaction', 'transactionDetails', 'user', 'paymentMethod', 'categories', 'events')); 
+    }
+
     public function adminTransactionIndex(Request $request)
     {
         $transactionsPending = Transaction::where('status', 'pending')->orderBy('created_at', 'desc')->get();

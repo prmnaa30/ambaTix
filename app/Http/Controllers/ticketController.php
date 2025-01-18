@@ -81,6 +81,9 @@ class ticketController extends Controller
                         'event_image_url' => $event->image_url,
                         'ticket_type' => $ticket->ticket_type,
                         'price' => $ticket->price,
+                        'event_date' => $event->date,
+                        'event_time' => $event->time,
+                        'event_location' => $event->location,
                     ];
                 }
             }

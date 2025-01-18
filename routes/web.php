@@ -40,6 +40,7 @@ Route::middleware(['auth'])->group(function (){
   Route::get('event/{id}/tickets/clear', [paymentController::class, 'clearCart'])->name('clearCart');
 
   Route::get('/transaction', [transactionController::class, 'showUserTransaction'])->name('showUserTransaction');
+  Route::get('/transaction/detail/{id}', [transactionController::class, 'showDetailTransaction'])->name('showDetailTransaction');
   Route::get('/ticket', [ticketController::class, 'show'])->name('showUserTicket');
 
   Route::get('/edit-profile', [profileController::class, 'editProfile'])->name('editProfile');
